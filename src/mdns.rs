@@ -21,7 +21,6 @@ pub fn mdns_interface(
 ) -> Result<(mDNSListener, mDNSSender), Error> {
     let socket = create_socket()?;
 
-    socket.set_multicast_loop_v4(false)?;
     socket.join_multicast_v4(&MULTICAST_ADDR, &interface_addr)?;
 
     let socket = Arc::new(UdpSocket::from(socket));
